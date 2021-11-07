@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Chat App</title>
+  <script defer src="http://localhost:3000/socket.io/socket.io.js"></script>
+  <script defer src="script.js"></script>
+  <style>
+    body
+    {
+      background-image: url('https://www.vhv.rs/dpng/d/5-57479_live-chat-logo-transparent-hd-png-download.png');
+      
+    }
+    #mid {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 30em;
+      height: 18em;
+      margin-top: -100px;
+      /*set to a negative number 1/2 of your height*/
+      margin-left: -150px;
+      /*set to a negative number 1/2 of your width*/
+      border: 1px solid #ccc;
+      padding: 30px;
+      background-color: #500707;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="mid">
+    <div id="room-container" style="color: white;">
+      <% Object.keys(rooms).forEach(room=> { %>
+        <div>
+          <%= room %>
+        </div>
+        <a href="/<%= room %>" style="color: white;">Join</a>
+        <% }) %>
+    </div>
+    <form action="/room" method="POST">
+      <input name="room" type="text" required>
+      <button type="submit">New Room</button>
+    </form>
+  </div>
+</body>
+
+</html>
